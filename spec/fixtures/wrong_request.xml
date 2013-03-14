@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<Response><Errors><Error><Code>InvalidClientTokenId</Code><Message>The AWS Access Key Id you provided does not exist in our records.</Message></Error></Errors><RequestID>ec2ca2b5-d125-0a6c-b8bf-8093dfd67337</RequestID></Response>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<aws:UrlInfoResponse xmlns:aws="http://alexa.amazonaws.com/doc/2005-10-05/">
+  <aws:Response>
+    <aws:ResponseStatus>
+      <aws:StatusCode>InvalidResponseGroups</aws:StatusCode>
+      <aws:StatusMessage>The following response groups are invalid: RankByCsountry</aws:StatusMessage>
+    </aws:ResponseStatus>
+  </aws:Response>
+</aws:UrlInfoResponse>

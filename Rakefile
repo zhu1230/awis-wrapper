@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "awis-wrapper"
   gem.homepage = "http://github.com/zhu1230/awis-wrapper"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Wrapper for AWIS service}
+  gem.description = %Q{Easy to use, to navigate around the response}
   gem.email = "zhu1230@gmail.com"
   gem.authors = ["Vincent.Z"]
   # dependencies defined in Gemfile

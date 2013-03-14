@@ -1,6 +1,6 @@
 = awis-wrapper
 
-Description goes here.
+This is the wrapper for AWIS service, this thought derive from Ishango2 project.
 
 == Contributing to awis-wrapper
  
