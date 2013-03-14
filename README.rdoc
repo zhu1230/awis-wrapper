@@ -2,6 +2,26 @@
 
 This is the wrapper for AWIS service, this thought derive from Ishango2 project.
 
+== Usage
+
+Amazon::Awis.options = {:aws_access_key_id => "123", :aws_secret_key => "456", :action => "UrlInfo", :responsegroup => "RankByCountry"}
+
+# Or with one block
+Amazon::Awis.configure do |options|
+    # options[:aws_access_key_id] = [your access key]
+    # options[:aws_secret_key] = [you secret key]
+    options[:responsegroup] = 'Rank'
+end
+
+#Call get_info method to get website info
+res = Amazon::Awis.get_info('yahoo.com')
+if res.success? 
+  all_countries = res.get_all('country')
+  all_countries.each do |c|
+    c.contribution.first.users.first
+  end
+end
+
 == Contributing to awis-wrapper
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
