@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "awis-wrapper.gemspec",
     "lib/awis-wrapper.rb",
     "spec/awis-wrapper_spec.rb",
     "spec/fixtures/bad_request.xml",
