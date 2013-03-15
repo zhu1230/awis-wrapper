@@ -5,16 +5,16 @@
 
 Gem::Specification.new do |s|
   s.name = "awis-wrapper"
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Vincent.Z"]
-  s.date = "2013-03-14"
+  s.date = "2013-03-15"
   s.description = "Easy to use, to navigate around the response"
   s.email = "zhu1230@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     ".document",
@@ -22,13 +22,14 @@ Gem::Specification.new do |s|
     "Gemfile",
     "Gemfile.lock",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "awis-wrapper.gemspec",
     "lib/awis-wrapper.rb",
     "spec/awis-wrapper_spec.rb",
     "spec/fixtures/bad_request.xml",
+    "spec/fixtures/batch_info.xml",
     "spec/fixtures/url_info.xml",
     "spec/fixtures/wrong_request.xml",
     "spec/fixtures/wrong_response.xml",
@@ -45,6 +46,7 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
+      s.add_runtime_dependency(%q<extlib>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
@@ -53,6 +55,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
     else
       s.add_dependency(%q<nokogiri>, [">= 0"])
+      s.add_dependency(%q<extlib>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, [">= 0"])
@@ -62,6 +65,7 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<nokogiri>, [">= 0"])
+    s.add_dependency(%q<extlib>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, [">= 0"])
