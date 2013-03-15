@@ -14,13 +14,25 @@ This is the wrapper for AWIS service, this thought derive from Ishango2 project.
       options[:responsegroup] = 'Rank'
   end
 
-  #Call get_info method to get website info
+  #Call get_info method to get single website info
   res = Amazon::Awis.get_info('yahoo.com')
   if res.success? 
     all_countries = res.get_all('country')
     all_countries.each do |c|
-      c.contribution.first.users.first
+      c.contribution.first.users.first  #navigate into the children tree. the accociations always return Array, so note the 'first' method.
     end
+  end
+  
+  #Or get multiple websites info with batch request
+  res = Amazon::Awis.get_info(]'yahoo.com', 'cnn.com')
+  if res.success?
+    res.get_all('response') # get all repsonse items in the document, then you can iterate all the response data with each "aws:Response"
+    element = res.get('response') # this would get only one(the first) item in the document
+    element.get_all_child('country') # all "aws:Country" items searched from current element. return Element class.
+    #or directly access
+    element.operation_request.first.request_id # would convert to camel case automaticly
+    # to access the attribute
+    element['Code'] == "US"
   end
 ```
 

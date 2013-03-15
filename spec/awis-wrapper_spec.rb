@@ -53,4 +53,16 @@ describe "AwisWrapper" do
     end
   end
   
+  context "with batch query" do
+    
+    let(:batch_request) { IO.read(Pathname.new(File.expand_path(File.dirname(__FILE__))).join('fixtures', 'batch_info.xml')) }
+    it "return multiple datasets" do
+      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: batch_request)
+      responses = Amazon::Awis::get_info(['yahoo.com', 'cnn.com'])
+      responses.get_all('response').size.should == 2
+      responses.get_all('response')[0].get_all_child('country').size.should == 34
+      responses.get_all('response')[1].url_info_result.first.alexa.should_not be_empty
+    end
+  end
+  
 end
