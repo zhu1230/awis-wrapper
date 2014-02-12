@@ -232,7 +232,7 @@ module Amazon
       urls.each_with_index do |url,i|
         batch_query["#{self.options[:action]}.#{i+1}.Url"] = url
       end
-      signature = Base64.encode64( OpenSSL::HMAC.digest( OpenSSL::Digest::Digest.new( "sha1" ), 
+      signature = Base64.encode64( OpenSSL::HMAC.digest( OpenSSL::Digest.new( "sha1" ), 
         self.options[:aws_secret_key], "GET\n#{awis_domain}\n/\n" + escape_query(batch_query))).strip
       query_str = batch_query.merge({'Signature' => signature})
       url = "http://#{awis_domain}/?#{escape_query(query_str)}"
