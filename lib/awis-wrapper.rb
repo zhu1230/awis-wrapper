@@ -21,15 +21,15 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #++
 
-require "cgi"
+# require "cgi"
 require "base64"
-require "openssl"
-require "digest/sha1"
-require "uri"
-require "net/https"
-require "time"
+# require "openssl"
+# require "digest/sha1"
+# require "uri"
+# require "net/https"
+# require "time"
 require "nokogiri"
-require "extlib"
+# require "extlib"
 
 module Amazon
   
@@ -65,6 +65,10 @@ module Amazon
     # Set debug flag to true or false.
     def self.debug=(dbg)
     	    @@debug = dbg
+    end
+
+    def self.camel_case(str)
+      str.downcase.split('_').each_with_index.map { |v,i| v.capitalize }.join
     end
     
     def self.configure(&proc)
@@ -112,11 +116,11 @@ module Amazon
       end
       
       def get(tag)
-        Element.new @doc.at_xpath("//aws:#{tag.camel_case}", @namespace)
+        Element.new @doc.at_xpath("//aws:#{Amazon::Awis.camel_case tag}", @namespace)
       end
       
       def get_all(tag)
-        @doc.xpath("//aws:#{tag.camel_case}", @namespace).collect{|data|Element.new data}
+        @doc.xpath("//aws:#{Amazon::Awis.camel_case tag}", @namespace).collect{|data|Element.new data}
       end
       
       # Return error code
@@ -147,7 +151,7 @@ module Amazon
       end
       
       def get_all_child(str)
-        result = @node.xpath(".//aws:#{str.to_s.camel_case}", Awis::NAMESPACE)
+        result = @node.xpath(".//aws:#{Amazon::Awis.camel_case str.to_s}", Awis::NAMESPACE)
         if result 
             result.collect do |r|
               Element.new r
@@ -158,7 +162,7 @@ module Amazon
       end
       
       def method_missing(methodId)
-        result = @node.xpath("./aws:#{methodId.to_s.camel_case}", Awis::NAMESPACE)
+        result = @node.xpath("./aws:#{Amazon::Awis.camel_case methodId.to_s}", Awis::NAMESPACE)
         if result 
             result.collect do |r|
               Element.new r

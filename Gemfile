@@ -10,4 +10,5 @@ group :development do
   gem "jeweler", "~> 1.8.4"
   gem "simplecov", ">= 0"
   gem 'fakeweb'
+  gem 'awesome_print'
 end
