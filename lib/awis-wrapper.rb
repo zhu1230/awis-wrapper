@@ -68,7 +68,9 @@ module Amazon
     end
 
     def self.camel_case(str)
-      str.split('_').each_with_index.map { |v,i| v.capitalize }.join
+      return str if str !~ /_/ && str =~ /[A-Z]+.*/
+      str.split('_').map{|e| e.capitalize}.join
+      # str.split('_').each_with_index.map { |v,i| v.capitalize }.join
     end
     
     def self.configure(&proc)
