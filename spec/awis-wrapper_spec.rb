@@ -17,7 +17,7 @@ describe "AwisWrapper" do
     it "would return the correct url" do
       Amazon::Awis.options[:action] = 'UrlInfo'
       Amazon::Awis.options[:responsegroup] = 'UsageStats'
-      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: url_info)
+      FakeWeb.register_uri(:get, %r{https://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: url_info)
       response = Amazon::Awis.get_info("yahoo.com")
       response.doc.should_not be_nil
       response.success?.should == true
@@ -27,14 +27,14 @@ describe "AwisWrapper" do
     it "return bad url with the wrong action" do
       Amazon::Awis.options[:action] = 'wrong_action123'
       Amazon::Awis.options[:responsegroup] = 'RankByCountry'
-      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: bad_request, :status => ["400", "Bad Request"])
+      FakeWeb.register_uri(:get, %r{https://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: bad_request, :status => ["400", "Bad Request"])
       expect { Amazon::Awis::get_info("yahoo.com") }.to raise_error(Amazon::RequestError)
     end
   
     it "return error code with wrong response group" do
       Amazon::Awis.options[:action] = 'UrlInfo'
       Amazon::Awis.options[:responsegroup] = 'RankByzzzzzCsountry' # made one typo for this example
-      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: wrong_response)
+      FakeWeb.register_uri(:get, %r{https://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: wrong_response)
       response = Amazon::Awis.get_info('yahoo.com')
       response.success?.should == false
       response.error.should == "The following response groups are invalid: RankByCsountry"
@@ -48,7 +48,7 @@ describe "AwisWrapper" do
     let(:wrong_request) { IO.read(Pathname.new(File.expand_path(File.dirname(__FILE__))).join('fixtures', 'wrong_request.xml')) }
     
     it "would arise error" do
-      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: wrong_request, :status => ["403", "Forbidden"])
+      FakeWeb.register_uri(:get, %r{https://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: wrong_request, :status => ["403", "Forbidden"])
       expect { Amazon::Awis::get_info("yahoo.com") }.to raise_error(Amazon::RequestError)
     end
   end
@@ -57,7 +57,7 @@ describe "AwisWrapper" do
     
     let(:batch_request) { IO.read(Pathname.new(File.expand_path(File.dirname(__FILE__))).join('fixtures', 'batch_info.xml')) }
     it "return multiple datasets" do
-      FakeWeb.register_uri(:get, %r{http://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: batch_request)
+      FakeWeb.register_uri(:get, %r{https://#{Amazon::Awis::AWIS_DOMAIN}/?.*}, body: batch_request)
       responses = Amazon::Awis::get_batch_info(['yahoo.com', 'cnn.com'])
       responses.get_all('response').size.should == 2
       responses.get_all('response')[0].get_all_child('country').size.should == 34

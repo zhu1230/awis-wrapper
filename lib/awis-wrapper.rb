@@ -27,7 +27,7 @@ require "base64"
 # require "digest/sha1"
 # require "uri"
 # require "net/https"
-# require "time"
+require "time"
 require "nokogiri"
 # require "extlib"
 
@@ -212,7 +212,7 @@ module Amazon
         'Url'              => domain
       }
       awis_domain = Amazon::Awis::AWIS_DOMAIN
-      URI.parse("http://#{awis_domain}/?" + escape_query(query.merge({ 
+      URI.parse("https://#{awis_domain}/?" + escape_query(query.merge({ 
         'Signature' => Base64.encode64(
           OpenSSL::HMAC.digest(
             'sha1', self.options[:aws_secret_key], 
@@ -241,7 +241,7 @@ module Amazon
       signature = Base64.encode64( OpenSSL::HMAC.digest( OpenSSL::Digest.new( "sha1" ), 
         self.options[:aws_secret_key], "GET\n#{awis_domain}\n/\n" + escape_query(batch_query))).strip
       query_str = batch_query.merge({'Signature' => signature})
-      url = "http://#{awis_domain}/?#{escape_query(query_str)}"
+      url = "https://#{awis_domain}/?#{escape_query(query_str)}"
       URI.parse url
   end
     

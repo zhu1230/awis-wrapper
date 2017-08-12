@@ -4,11 +4,14 @@
 # -*- encoding: utf-8 -*-
 # stub: awis-wrapper 0.2.5 ruby lib
 
+require './lib/awis-wrapper/version.rb'
+
+
 Gem::Specification.new do |s|
   s.name = "awis-wrapper"
-  s.version = "0.2.5"
+  s.version = AwisWrapper::Version::STRING
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  # s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Vincent.Z"]
   s.date = "2014-07-13"
@@ -39,18 +42,18 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/zhu1230/awis-wrapper"
   s.licenses = ["MIT"]
-  s.rubygems_version = "2.2.2"
+  s.rubygems_version = "2.6.11"
   s.summary = "Wrapper for AWIS service"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
-
+    ap Gem::VERSION
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<nokogiri>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
+      s.add_development_dependency(%q<jeweler>, ["~> 2.3.7"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
       s.add_development_dependency(%q<awesome_print>, [">= 0"])
@@ -59,7 +62,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, [">= 0"])
-      s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
+      s.add_dependency(%q<jeweler>, ["~> 2.3.7"])
       s.add_dependency(%q<simplecov>, [">= 0"])
       s.add_dependency(%q<fakeweb>, [">= 0"])
       s.add_dependency(%q<awesome_print>, [">= 0"])
@@ -69,7 +72,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, [">= 0"])
-    s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
+    s.add_dependency(%q<jeweler>, ["~> 2.3.7"])
     s.add_dependency(%q<simplecov>, [">= 0"])
     s.add_dependency(%q<fakeweb>, [">= 0"])
     s.add_dependency(%q<awesome_print>, [">= 0"])
